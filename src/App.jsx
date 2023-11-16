@@ -1,17 +1,20 @@
-import './App.css';
-import { LoginPage } from './pages/auth/LoginPage';
-import { store } from './store/store';
-import  { Provider } from 'react-redux';
+import "./App.css";
+import { LoginPage } from "./pages/auth/LoginPage";
+import { AuthRoutes } from "./routes/authRoutes";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-
   return (
     <>
-      <Provider store={store} >
-        <LoginPage/>
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <AuthRoutes />
+        </Provider>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,12 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { googleSignIn } from '../../slices/';
-
+import { authStates } from '../../helpers'
 export const LoginPage = () => {
   
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { auth } = useSelector(state => state.auth)
 
     const hanldeSigInGoogle =  () => {
-        dispatch(  googleSignIn() );
+        dispatch(googleSignIn());
     }
   
     return (
@@ -22,10 +23,10 @@ export const LoginPage = () => {
             name="password"
             placeholder="Ingresa tu contraseña"
           />
-          <button className="button-login"> Login </button>
+          <button className="button-login" disabled={ (auth === authStates.authenticated  ) ?? false }  > Login </button>
         </section>
         <footer className="footer-buttons-social-media">
-          <button type="button" className="button-google" onClick={hanldeSigInGoogle} >
+          <button type="button" className="button-google"  disabled={ (auth === authStates.authenticated  ) ?? false }  onClick={hanldeSigInGoogle} >
             <i className="fa-brands fa-google"></i>
           </button>
         </footer>

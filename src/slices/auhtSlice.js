@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { authStates } from '../helpers/enums';
 
-const authStates = {
-    not_authenticated:'not-authenticated',
-    authenticated:'authenticated',
-    checking:'checking'
-}
 
 const initialState = {
     auth: authStates.not_authenticated,
@@ -21,7 +17,6 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         onLoggin: (state, {payload}) => {
-            console.log(payload)
             state.auth = authStates.authenticated;
             state.token = payload.token;
             state.uid = payload.uid;
