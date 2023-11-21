@@ -88,7 +88,7 @@ button:focus {
 }
 
 .button-google {
-  width: 50%;
+  width: 50% !important;
   margin-top: 20px;
 }
 
@@ -100,6 +100,7 @@ button:focus {
 }
 
 .card {
+  background-color: inherit;
   border-radius: 10px;
   width: 80%;
   margin: 40px auto;
@@ -153,7 +154,30 @@ button:focus {
 }
 .date-picker {
   width: 100%;
+  background-color: white;
+  color: black;
+  appearance: none;
+  border-radius: 0.37rem;
+  line-height: 1.5;
+  background-clip: padding-box;
 }
+
+.main-title {
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.margin-top-5{
+  margin-top: 5px;
+}
+
+.color-black-title {
+  color: black;
+}
+
 @media (max-width: 470px) {
     .card-body{
       display: block;

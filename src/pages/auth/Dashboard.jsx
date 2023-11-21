@@ -9,7 +9,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <h2> Tus movimientos </h2>
+      <h1 className="main-title" > Tus movimientos </h1>
       <CardAmount />
       <main>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
