@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { googleSignIn } from '../../slices/';
 import { authStates } from '../../helpers';
-import '../../index.css'
+import '../../index.css';
+
 export const LoginPage = () => {
   
   const dispatch = useDispatch();

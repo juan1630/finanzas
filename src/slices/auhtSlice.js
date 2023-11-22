@@ -25,14 +25,15 @@ const authSlice = createSlice({
             state.email = payload.email;
             state.errorMessage = null;
         },
-        onLoggout: (state, action) => {
+        onLoggout: (state) => {
             state.auth = authStates.not_authenticated;
             state.token = null;
             state.uid = null;
             state.displayName = null;
             state.photoURL = null;
             state.email = null;
-            state.errorMessage = action.payload.errorMessage;
+            state.errorMessage = null
+            localStorage.clear()
         },
         onChecking:(state) => {
             state.auth = authStates.checking;

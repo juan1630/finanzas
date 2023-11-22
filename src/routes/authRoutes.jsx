@@ -3,10 +3,15 @@ import { LoginPage } from "../pages/auth/LoginPage";
 import { useAuth } from "../hooks/";
 import { authStates } from "../helpers";
 import { Dashboard } from "../pages/auth/Dashboard";
+import { useEffect, useState } from "react";
 
 export const AuthRoutes = () => {
-  const { auth } = useAuth();
+  const { onCheckingAuth, auth } = useAuth();
+  const [authState, setAuthState] = useState('');
 
+  useEffect(() => {
+    onCheckingAuth()
+  },[auth]);
   return (
     <>
       <Routes>

@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
+import { useState } from "react";
 import "../../index.css";
+import { addNewReport } from "../../slices";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const ModalForm = () => {
+  const dispatch = useDispatch();
+  //state
   const [formState, setFormState] = useState({
     name: "",
     amount: 0,
@@ -25,13 +30,19 @@ export const ModalForm = () => {
     }));
   };
 
-  const onSubmit = () => {
-    console.log(formState);
-  }
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      dispatch(addNewReport(formState));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
-      <Form onSubmit={onSubmit} >
+      <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label className="mt-2">Nombre:</Form.Label>
           <Form.Control
@@ -46,13 +57,17 @@ export const ModalForm = () => {
           <Form.Control
             type="amount"
             onChange={onChange}
+            name="amount"
             placeholder="Cantidad &#36;500.00"
+            value={formState.amount}
           />
 
           <Form.Label className="mt-2">Descripcion:</Form.Label>
           <Form.Control
+            name="description"
             type="description"
             onChange={onChange}
+            value={formState.description}
             placeholder="Descripcion &#128221;"
           />
 
@@ -84,14 +99,16 @@ export const ModalForm = () => {
 
           <Form.Label className="mt-2"> Fecha: </Form.Label>
           <input
-            value={formState.date}
             name="date"
             type="date"
-            defaultValue={today}
             max={today}
             className="date-picker"
             onChange={onChange}
           />
+          <button type="button" onClick={onSubmit}>
+            {" "}
+            Agregar{" "}
+          </button>
         </Form.Group>
       </Form>
     </>
