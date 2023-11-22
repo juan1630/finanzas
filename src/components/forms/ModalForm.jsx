@@ -1,33 +1,23 @@
 import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
-import { useState } from "react";
 import "../../index.css";
 import { addNewReport } from "../../slices";
+import { useFormModal } from '../../hooks';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export const ModalForm = () => {
+export const ModalForm = ({ modalToggle }) => {
+  
   const dispatch = useDispatch();
-  //state
-  const [formState, setFormState] = useState({
-    name: "",
-    amount: 0,
-    description: "",
-    category: "",
-    date: "",
-  });
 
-  const createdDate = new Date().toISOString();
-  const [today] = createdDate.split("T");
+  const { onChangeFormModal, formState, today } = useFormModal();
 
   const onChange = (event) => {
     event.preventDefault();
     const { target } = event;
+    const { name, value } = target;
+    onChangeFormModal(name,value)
 
-    setFormState((previusValue) => ({
-      ...previusValue,
-      [target.name]: target.value,
-    }));
   };
 
   const onSubmit = async (e) => {
@@ -35,6 +25,7 @@ export const ModalForm = () => {
 
     try {
       dispatch(addNewReport(formState));
+      modalToggle();
     } catch (error) {
       console.log(error);
     }
@@ -105,10 +96,8 @@ export const ModalForm = () => {
             className="date-picker"
             onChange={onChange}
           />
-          <button type="button" onClick={onSubmit}>
-            {" "}
-            Agregar{" "}
-          </button>
+          <hr />
+          <button type="button" className="mt-2 rounded-button" onClick={onSubmit}>Agregar</button>
         </Form.Group>
       </Form>
     </>

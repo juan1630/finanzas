@@ -19,10 +19,10 @@ export const googleSignIn = () => {
     const resp = await signInWithGoogle();
     if (!resp.ok) return dispatch(onLoggout(resp.errorMessage));
     delete resp.ok;
-    localStorage.setItem('user', JSON.stringify(resp));
-    localStorage.setItem('token', resp.token)
+    localStorage.setItem("user", JSON.stringify(resp));
+    localStorage.setItem("token", resp.token);
     dispatch(onLoggin(resp));
-    };
+  };
 };
 
 export const addNewReport = (modalFormData) => {

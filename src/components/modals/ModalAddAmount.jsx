@@ -9,16 +9,8 @@ export const ModalAddAmount = ({ modalState, modalToggle }) => {
     <Modal animation={true} show={modalState} onHide={modalToggle}>
       <Modal.Header className="main-title color-black-title margin-top-5" > Agregar gasto </Modal.Header>
       <Modal.Body>
-        <ModalForm />
+        <ModalForm  modalToggle={modalToggle} />
       </Modal.Body>
-      <Modal.Footer className="align-items-space-between">
-        <Button className="button rounded-button" onClick={modalToggle}>
-          Agregar
-        </Button>
-        <Button className="button button-modal-close" onClick={modalToggle}>
-          Cerrar
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 };
