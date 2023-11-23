@@ -1,15 +1,9 @@
 import { useState } from 'react';
 
-export const useFormModal= () => {
+export const useFormModal= (initialState = {} ) => {
 
      //state
-  const [formState, setFormState] = useState({
-    name: "",
-    amount: 0,
-    description: "",
-    category: "",
-    date: "",
-  });
+  const [formState, setFormState] = useState(initialState);
 
   const createdDate = new Date().toISOString();
   const [today] = createdDate.split("T");
@@ -21,10 +15,15 @@ export const useFormModal= () => {
       }));
   }
 
+  const resetForm = () => {
+    setFormState(initialState);
+  }
+
 
   return{
     today,
     formState,
-    onChangeFormModal
+    onChangeFormModal,
+    resetForm
   }
 }

@@ -31,6 +31,19 @@ h1 {
   line-height: 1.1;
 }
 
+.form-login-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+.row-buttons {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
 button {
   width: 100%;
   border-radius: 8px;
@@ -131,6 +144,13 @@ button:focus {
 
 .card-amount {
   font-size: 22px;
+}
+
+.login-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color:white;
+  text-align: center;
 }
 
 .list-card-items{

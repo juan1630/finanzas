@@ -2,22 +2,26 @@ import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import "../../index.css";
 import { addNewReport } from "../../slices";
-import { useFormModal } from '../../hooks';
-
+import { useFormModal } from "../../hooks";
+import { selectValuesFormValues } from "../../helpers/actions";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const ModalForm = ({ modalToggle }) => {
-  
   const dispatch = useDispatch();
 
-  const { onChangeFormModal, formState, today } = useFormModal();
+  const { onChangeFormModal, formState, today, resetForm } = useFormModal({
+    name: "",
+    amount: 0,
+    description: "",
+    category: "",
+    date: "",
+  });
 
   const onChange = (event) => {
     event.preventDefault();
     const { target } = event;
     const { name, value } = target;
-    onChangeFormModal(name,value)
-
+    onChangeFormModal(name, value);
   };
 
   const onSubmit = async (e) => {
@@ -68,24 +72,11 @@ export const ModalForm = ({ modalToggle }) => {
             onChange={onChange}
             name="category"
           >
-            <option>Selecciona una categoría</option>
-            <option value="alimentación">Alimentación</option>
-            <option value="transporte">Transporte</option>
-            <option value="hogar">Hogar</option>
-            <option value="familia">Familia</option>
-            <option value="diversion">Diversión</option>
-            <option value="deudas">Deudas</option>
-            <option value="telefonia">Telefonía</option>
-            <option value="despensa">Despensa</option>
-            <option value="internet">Internet</option>
-            <option value="electronica">Electroníca</option>
-            <option value="mascotas">Mascotas</option>
-            <option value="apredizaje">Apredizaje</option>
-            <option value="streaming">Streaming</option>
-            <option value="servicios profesionales">
-              Servicios profesionales
-            </option>
-            <option value="otros">Otros</option>
+            {selectValuesFormValues
+              .sort((a, b) => a.value.toLowerCase() - b.value.toLowerCase())
+              .map(({ displayName, value }, index) => (
+                <option key={index} value={value}>{displayName}</option>
+              ))}
           </Form.Select>
 
           <Form.Label className="mt-2"> Fecha: </Form.Label>
@@ -97,7 +88,21 @@ export const ModalForm = ({ modalToggle }) => {
             onChange={onChange}
           />
           <hr />
-          <button type="button" className="mt-2 rounded-button" onClick={onSubmit}>Agregar</button>
+          <button
+            type="button"
+            className="mt-2 rounded-button"
+            onClick={onSubmit}
+          >
+            Agregar
+          </button>
+          <button
+            type="button"
+            className="mt-2 rounded-button"
+            onClick={resetForm}
+          >
+            {" "}
+            Cancelar{" "}
+          </button>
         </Form.Group>
       </Form>
     </>

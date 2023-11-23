@@ -10,3 +10,5 @@ export const STATUS_REPORTS = {
     created:'CREATED',
     error: 'ERROR'
 }
+
+export const isLoginValid = false;
