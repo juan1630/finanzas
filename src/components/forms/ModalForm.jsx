@@ -18,7 +18,6 @@ export const ModalForm = ({ modalToggle }) => {
   });
 
   const onChange = (event) => {
-    event.preventDefault();
     const { target } = event;
     const { name, value } = target;
     onChangeFormModal(name, value);
@@ -99,9 +98,7 @@ export const ModalForm = ({ modalToggle }) => {
             type="button"
             className="mt-2 rounded-button"
             onClick={resetForm}
-          >
-            {" "}
-            Cancelar{" "}
+          >Cancelar
           </button>
         </Form.Group>
       </Form>

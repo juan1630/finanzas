@@ -37,10 +37,26 @@ export const addNewReport = (modalFormData) => {
       dispatch(getReports());
     } catch (error) {
       console.log(error);
+      Swal.fire("Hubo un error", "", "error");
       dispatch(onErrorReprtsMessage(error));
     }
   };
 };
+
+export const addNewIngreso = ( formSalary ) => {
+  return async(dispatch, getState)=>{
+    const { uid } = getState().auth;
+    try {
+    const newIngreso = doc(collection( FireStoreDb, `${uid}/ingresos/ingreso/` ));
+    setDoc(newIngreso,formSalary);
+    dispatch(getReports());
+    Swal.fire('Registro correcto', '', 'success');
+    } catch (error) {
+      Swal.fire("Hubo un error", "", "error");
+      console.log(eror);
+    }
+  }
+}
 
 export const getReports = () => {
   return async (dispatch, getState) => {

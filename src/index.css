@@ -37,6 +37,15 @@ h1 {
   justify-content: center;
   height: 100vh;
 }
+
+.close-button-modal{
+  width: 50%;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 85% ;
+}
 .row-buttons {
   display: flex;
   width: 100vw;
@@ -62,7 +71,9 @@ button {
   border-radius: 8px !important;
   border: 1px solid transparent !important;
 }
-
+.modal .modal-header {
+  padding: 0;
+}
 .button-modal-close{
   background-color: var(--primary-button-hover) !important;
 }

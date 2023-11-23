@@ -14,3 +14,13 @@ export const selectValuesFormValues = [
     {value: 'servicios profesionales', displayName:'Servicos profesionales' },
     {value: 'otros', displayName:'Otros' },
 ];
+
+export const selectValuesSalary  = [
+    {value: 'salario', displayName: 'Salario' },
+    {value: 'finiquito', displayName: 'Finiquito' },
+    {value: 'aguilando', displayName: 'Aguinaldo' },
+    {value: 'rendimientos', displayName: 'Rendimientos' },
+    {value: 'otros ingresos', displayName: 'Otros ingresos' },
+    {value: 'prestamos de bancos', displayName: 'Prestamos de bacnos' },
+    {value: 'prestamos a personas', displayName: 'Prestamos a personas' },
+]
