@@ -37,6 +37,7 @@ export const addNewReport = (modalFormData) => {
       dispatch(onCreatedReport(modalFormData));
       Swal.fire("Registro correcto", "", "success");
       dispatch(getReports());
+      dispatch(getIngresos());
     } catch (error) {
       console.log(error);
       Swal.fire("Hubo un error", "", "error");
@@ -69,6 +70,7 @@ export const getReports = () => {
       const resp = await loadReports(uid);
       const total = caculateTotal(resp);
       dispatch(onAddReports({totalReports: total, reports: resp }));
+      dispatch(onAddIngresos());
     } catch (error) {
       console.log(error);
     }

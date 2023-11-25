@@ -21,8 +21,8 @@ export const CardAmount = () => {
           <p>${ totalIngresos - totalReports }.00</p>
         </Card.Title>
       <Card.Body style={{ display: "block" }}>
-        <p>Total de egresos: {totalReports}.00  </p>
-        <p> Total de ingresos: {totalIngresos } </p>
+        <p>Total de egresos:  <strong> ${totalReports}.00 </strong>   </p>
+        <p> Total de ingresos: <strong> ${totalIngresos }.00 </strong>  </p>
       </Card.Body>
     </Card>
   );
