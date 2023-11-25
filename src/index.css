@@ -156,6 +156,7 @@ button:focus {
 .card-body {
   display: flex;
   justify-content: space-around;
+  padding: 5px;
 }
 
 .card-title {
@@ -222,7 +223,17 @@ button:focus {
 .color-black-title {
   color: black;
 }
+.card-body-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
+.description-p {
+  width: 90%;
+  text-align: start;
+  margin-left: 15px;
+}
 @media (max-width: 470px) {
     .card-body{
       display: block;

@@ -70,7 +70,7 @@ export const getReports = () => {
       const resp = await loadReports(uid);
       const total = caculateTotal(resp);
       dispatch(onAddReports({totalReports: total, reports: resp }));
-      dispatch(onAddIngresos());
+      dispatch(getIngresos());
     } catch (error) {
       console.log(error);
     }

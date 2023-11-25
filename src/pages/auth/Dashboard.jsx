@@ -25,8 +25,8 @@ export const Dashboard = () => {
       </nav>
       <CardAmount />
       <main>
-        {reports.reports.map(({ amount, name }, index) => (
-          <ListCardsItems key={index} amountName={name} amount={amount} />
+        {reports.reports.map(({ amount, name, description }, index) => (
+          <ListCardsItems key={index} amountName={name} amount={amount} description={description} />
         ))}
       </main>
       <button
