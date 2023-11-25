@@ -19,3 +19,24 @@ export const loadReports = async (uid = "") => {
     Swal.fire("Error", "", "error");
   }
 };
+
+
+export const loadIngresos = async( uid = "" ) => {
+  let docsIngresos = [];
+
+  try {
+    if (!uid) throw new Error("UID not valid");
+
+    const docRef = collection(FireStoreDb, `${uid}/ingresos/ingreso/`);
+    const docs = await getDocs(docRef);
+
+    docs.forEach((doc) => {
+      docsIngresos.push(doc.data());
+    });
+
+    return docsIngresos;
+
+  } catch (error) {
+    console.log(error);
+  }
+}

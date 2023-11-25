@@ -11,7 +11,9 @@ import {
 } from "./reportsSlice";
 
 import Swal from "sweetalert2";
-import { loadReports } from "../helpers/loadReports";
+import { loadIngresos, loadReports } from "../helpers/loadReports";
+import { caculateTotal } from "../helpers/calculates";
+import { onAddIngresos } from "./ingresosSlice";
 
 export const googleSignIn = () => {
   return async (dispatch) => {
@@ -43,29 +45,46 @@ export const addNewReport = (modalFormData) => {
   };
 };
 
-export const addNewIngreso = ( formSalary ) => {
-  return async(dispatch, getState)=>{
+export const addNewIngreso = (formSalary) => {
+  return async (dispatch, getState) => {
     const { uid } = getState().auth;
     try {
-    const newIngreso = doc(collection( FireStoreDb, `${uid}/ingresos/ingreso/` ));
-    setDoc(newIngreso,formSalary);
-    dispatch(getReports());
-    Swal.fire('Registro correcto', '', 'success');
+      const newIngreso = doc(
+        collection(FireStoreDb, `${uid}/ingresos/ingreso/`)
+      );
+      setDoc(newIngreso, formSalary);
+      dispatch(getReports());
+      Swal.fire("Registro correcto", "", "success");
     } catch (error) {
       Swal.fire("Hubo un error", "", "error");
       console.log(eror);
     }
-  }
-}
+  };
+};
 
 export const getReports = () => {
   return async (dispatch, getState) => {
     try {
       const { uid } = getState().auth;
       const resp = await loadReports(uid);
-      dispatch(onAddReports(resp));
+      const total = caculateTotal(resp);
+      dispatch(onAddReports({totalReports: total, reports: resp }));
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const getIngresos = () => {
+  return async (dispatch, getState) => {
+    try {
+      const { uid } = getState().auth;
+
+      const resp = await loadIngresos(uid);
+      const total = caculateTotal(resp);
+      dispatch(onAddIngresos({total, ingresos: resp }));
+    } catch (error) {
+      Swal.fire("Error", error, "error");
     }
   };
 };

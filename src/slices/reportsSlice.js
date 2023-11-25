@@ -4,6 +4,7 @@ import { STATUS_REPORTS } from "../helpers/enums";
 const initialState = {
   status: STATUS_REPORTS.not_creating,
   reports: [],
+  totalReports:0,
   errorMessage: null,
   reportCreated: {},
 };
@@ -30,8 +31,10 @@ const reportsSlice = createSlice({
       state.reportCreated = payload;
     },
     onAddReports: (state, { payload }) => {
+      console.log(payload)
       state.status = STATUS_REPORTS.not_creating;
-      state.reports = payload;
+      state.reports = payload.reports;
+      state.totalReports = payload.totalReports;
     },
   },
 });

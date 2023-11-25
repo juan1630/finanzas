@@ -1,13 +1,28 @@
+import { useEffect } from "react";
 import { Card } from "react-bootstrap";
+import { useDispatch, useSelector } from 'react-redux';
+import {getIngresos } from '../../slices'
 
-export const CardAmount = ({ amount = 0 }) => {
+export const CardAmount = () => {
+  
+  const dispatch = useDispatch();
+  const { totalIngresos } = useSelector( state => state.ingresos);
+  const { totalReports } = useSelector( state => state.reports);
+
+  const getIngresosCard = async() => dispatch( getIngresos()); 
+  useEffect(() => {
+    getIngresosCard();
+  }, []);
+
   return (
     <Card>
-      <Card.Body style={{ display: "block" }}>
-        <Card.Title className="card-body-amount">
-          <p>Saldo disponible:</p>
-          <p>${amount}.00</p>
+      <Card.Title className="card-body-amount">
+          <p>Total:</p>
+          <p>${ totalIngresos - totalReports }.00</p>
         </Card.Title>
+      <Card.Body style={{ display: "block" }}>
+        <p>Total de egresos: {totalReports}.00  </p>
+        <p> Total de ingresos: {totalIngresos } </p>
       </Card.Body>
     </Card>
   );
